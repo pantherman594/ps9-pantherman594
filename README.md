@@ -22,7 +22,13 @@ public interface MapCS2<Key extends Comparable<Key>, Value> {
 
 ```
 
-**Note: I expect you to use the files I have provided. Do not create new .java files, and do not change the names of the methods. I will be testing your code using these specific methods.**
+**Helpful Hints**
+
+* Keys are unique in a map! If the user calls `put()` with a key that has already been added to the map, replace the current value for that key with the new value.
+
+* The toString() method should return a string with key-value pairs, where the key is separated from the value by a space-colon-space, and the pairs are separated by a comma-space, e.g., ``dog : animal, tree : vegetable, salt : mineral``.
+
+* I expect you to use the files I have provided. Do not create new .java files, and do not change the names of the methods. I will be testing your code using these specific methods.
 
 
 ### Part 1: Hash map with separate chaining: HashMapCS2.java
@@ -30,16 +36,42 @@ I have provided skeleton code for a hash-based implementation of the `MapCS2` in
 
 * You will be storing your values in an array of size 31 of `ArrayList` objects, in which each `ArrayList` contains elements of the `KeyValuePair` type, which you will define as outlined in the `HashMapCS2.java` file. That is, you will have an array, and every element in the array will be an `ArrayList` of `KeyValuePair` objects. This will allow you to easily and efficiently implement separate chaining for collision resolution. For more information on how separate chaining works, see the textbook and the lecture notes on maps (or "symbol tables" as they are often called in the textbook).
 
-* You must also write the hash function. To keep things manageable, you will implement a hash function for only three data types: String, Integer, and Double. Your hash function will take any Integer, Double, or String, and convert it to an integer between 0 and 30. Details are provided in the `HashMapCS2.java` file. Your code needs to handle Keys of these three types only.
+* You must also write the hash function. To keep things manageable, you will implement a hash function for **only three data types: `String`, `Integer`, and `Double`**. Your hash function will take any Integer, Double, or String, and convert it to an integer between 0 and 30. Details are provided in the `HashMapCS2.java` file. Your code needs to handle Keys of these three types only.
 
-*There are many implementations of the hash map data structure on the web, including one provided by the textbook. You must implement your hash map as I have described above. If you copy and paste existing code, you will not be meeting the specifications here.*
+*There are many implementations of the hash map data structure on the web, including one provided by the textbook. You must implement your hash map as I have described above. If you copy and paste existing code, you will not be meeting the specifications described here.*
 
 
 ### Part 2: Tree map with a binary search tree: TreeMapCS2.java
+I have provided skeleton code for a tree-based implementation of the `MapCS2` interface in the `TreeMapCS2.java` file. Your tree map implementation will include all of the interface methods, plus the following components:
+
+* You will create your trees using an inner `Node` class, whose instance variables will include `Key k, Value v, Node rightchild`, and `Node leftchild`.
+
+* Every `TreeMapCS2` object will have a pointer to the top `Node` and a size variable.
+
+* You will use a binary search tree to store your key-value pairs. Therefore, your keys can be anything that implements `Comparable`. You don't need to write a `compareTo()` method. You can just assume that the user will only use keys that already implement `Comparable`.
+
+* When you return your set of ordered keys, consult the class notes on tree traversal to remember how to traverse the tree in the correct order to return an ordered set.
+
+*There are many implementations of the tree map data structure on the web. You must implement your tree map as I have described above. If you copy and paste existing code, you will not be meeting the specifications decsribed here.*
+
 
 ### Part 3: Testing your data structures
 
-Populate your hashmap with the following key-value pairs:
+In the TestMyMap.java file, write a main method that does the following.
 
-A. Write code in your java class definitions to count the number of operations required to 
+1. Create a HashMapCS2 object and a TreeMapCS2 object.
+
+2. Populate each map with the following key-value pairs. You must insert them in this order!
+
+| key | value |
+| 5   | "dog" |
+| 36  | "cat" |
+| 73  | "elephant" |
+| 470 | "aligator" |
+| 5   | "dog" |
+| 5   | "dog" |
+| 5   | "dog" |
+
+
+3. Write code in your class definitions to count the number of comparisons required to 
 
