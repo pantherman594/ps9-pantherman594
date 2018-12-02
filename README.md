@@ -11,7 +11,7 @@ This is an individual assignment. In this problem set, you will be implementing 
 public interface MapCS2<Key extends Comparable<Key>, Value> { 
   Value get(Key key);           // returns a Value for the specified key
   void put(Key key, Value val); // puts a Key-Value pair in the map
-  ArrayList<Keys> getKeys();    // returns the keys of the map as a set
+  ArrayList<Keys> getKeys();    // returns the keys of the map as an ArrayList
   Key min();                    // returns the minimum key in the map
   Key max();                    // returns the maximum key in the map
   boolean contains(Key key);    // returns true if the map contains the key
@@ -34,9 +34,9 @@ public interface MapCS2<Key extends Comparable<Key>, Value> {
 ### Part 1: Hash map with separate chaining: `HashMapCS2.java`
 I have provided skeleton code for a hash-based implementation of the `MapCS2` interface in the `HashMapCS2.java` file. Your hash map implementation will include all of the above interface methods, as well as the following components:
 
-* You will be storing your values in an `ArrayList` **of size 31** of `ArrayList` objects, each of which will contain elements of the `KeyValuePair` type. You will define the `KeyValuePair` class as outlined in the `HashMapCS2.java` file. That is, you will have an `ArrayList`, and every element in the `ArrayList` will be an `ArrayList` of `KeyValuePair` objects. This will allow you to easily and efficiently implement separate chaining for collision resolution. For more information on how separate chaining works, see the textbook and the lecture notes on maps (or "symbol tables" as they are often called in the textbook).
+* You will be storing your values in an `ArrayList` **of size 31** of `LinkedList` objects, each of which will contain elements of the `KeyValuePair` type. (I have defined the `KeyValuePair` class for you in the `HashMapCS2.java` file.) That is, you will have an `ArrayList`, and every element in the `ArrayList` will be an `LinkedList` of `KeyValuePair` objects. This will allow you to implement separate chaining for collision resolution in a way that is similar to the method shown in the textbook. For more information on how separate chaining works, see the textbook and the lecture notes on maps (or "symbol tables" as they are often called in the textbook).
 
-* You must also write the hash functions. To keep things manageable, you will implement a hash function for **each of these three data types:** `String`, `Integer`, and `Double`. You should have one method called hashFunction(), which you will overload: there will be one version of hashFunction() for each of the three data types you are responsible for. The has function will be able to convert `String`, `Integer`, and `Double` to an integer between 0 and 30. Details are provided in the `HashMapCS2.java` file. Your code needs to handle keys of these three types only. Do not use a different hash function than the one described in the file.
+* You must also finishing writing the hash function. To keep things manageable, you will generate hash codes only for  **these three data types:** `String`, `Integer`, and `Double`. The hash function will convert an instance of the `String`, `Integer`, or `Double` data type into an integer between 0 and 30.  I have provided code for the `hashFunction()` method. Details are provided in the `HashMapCS2.java` file. Your code needs to handle keys of these three types only. Do not use a different hash function than the one described in the file.
 
 *There are many implementations of the hash map data structure on the web, including one provided by the textbook. You must implement your hash map as I have described above using the skeleton code I have provided.*
 
@@ -44,7 +44,7 @@ I have provided skeleton code for a hash-based implementation of the `MapCS2` in
 ### Part 2: Tree map with a binary search tree: `TreeMapCS2.java`
 I have provided skeleton code for a tree-based implementation of the `MapCS2` interface in the `TreeMapCS2.java` file. Your tree map implementation will include all of the interface methods, plus the following components:
 
-* You will create your trees using an inner `Node` class, whose instance variables will include `Key k, Value v, Node rightchild`, and `Node leftchild`.
+* You will create your trees using an inner `Node` class, whose instance variables will include `Key k, Value v, Node rightchild`, and `Node leftchild`. You will define this inner class.
 
 * Every `TreeMapCS2` object will have a pointer to the top `Node` and a size variable.
 
