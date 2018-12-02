@@ -4,7 +4,7 @@
 
 ---
 
-This is an individual assignment. In this problem set, you will be implementing two different maps and running experiments to compare their efficiency under different circumstance. For both maps, you will be implementing the following map ADT interface, which you will find in the `src` directory:
+This is an individual assignment. In this problem set, you will be implementing two different maps and running experiments to compare their efficiency under different circumstances. For both maps, you will be implementing the following map ADT interface, which you will find in the `src` directory:
 
 ``` java
 
