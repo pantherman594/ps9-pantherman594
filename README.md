@@ -11,7 +11,7 @@ This is an individual assignment. In this problem set, you will be implementing 
 public interface MapCS2<Key extends Comparable<Key>, Value> { 
   Value get(Key key);           // returns a Value for the specified key
   void put(Key key, Value val); // puts a Key-Value pair in the map
-  Set<Keys> getKeys();          // returns the keys of the map as a set
+  ArrayList<Keys> getKeys();          // returns the keys of the map as a set
   Key min();                    // returns the minimum key in the map
   Key max();                    // returns the maximum key in the map
   boolean contains(Key key);    // returns true if the map contains the key
@@ -50,28 +50,53 @@ I have provided skeleton code for a tree-based implementation of the `MapCS2` in
 
 * You will use a binary search tree to store your key-value pairs. Therefore, your keys can be anything that implements `Comparable`. You don't need to write a `compareTo()` method. You can just assume that the user will only use keys that already implement `Comparable`.
 
-* When you return your set of ordered keys, consult the class notes on tree traversal to remember how to traverse the tree in the correct order to return an ordered set.
+* When you are writing the code for `getKeys()` to return an ArrayList of ordered keys, consult the class notes on tree traversal to remember how to traverse the tree in the correct order to return an ordered list. 
 
 *There are many implementations of the tree map data structure on the web. You must implement your tree map as I have described above. If you copy and paste existing code, you will not be meeting the specifications decsribed here.*
 
 
 ### Part 3: Testing your data structures
 
-In the TestMyMap.java file, write a main method that does the following.
+In each of the two maps, add code to keep track of and print out the number of comparisons required to (1) find the minimum key, and (2) find the maximum key.
+
+Then in the `TestMyMap.java` file, write a main method that does the following.
 
 1. Create a HashMapCS2 object and a TreeMapCS2 object.
 
 2. Populate each map with the following key-value pairs. You must insert them in this order!
 
 | key | value |
+| --- | --- |
 | 5   | "dog" |
+| 22  | "lion" |
 | 36  | "cat" |
 | 73  | "elephant" |
+| 89  | "monkey" |
+| 177 | "donkey" |
+| 215 | "cheetah" |
+| 315 | "panda" |
 | 470 | "aligator" |
-| 5   | "dog" |
-| 5   | "dog" |
-| 5   | "dog" |
+| 496 | "koala" |
 
+3. Call `min()` and `max()` on both maps.
 
-3. Write code in your class definitions to count the number of comparisons required to 
+4. Now populate a new map of each kind with the following key-value pairs **in this order**.
+
+| key | value |
+| --- | --- |
+| 177 | "donkey" |
+| 215 | "cheetah" |
+| 89  | "monkey" |
+| 315 | "panda" |
+| 73  | "elephant" |
+| 470 | "aligator" |
+| 22  | "lion" |
+| 5   | "dog" |
+| 36  | "cat" |
+| 496 | "koala" |
+
+5. Call `min()` and `max()` on both new maps.
+
+6. In the comments of `TestMyMap.java` explain any differences you see in the number of comparisons required for the two different maps under the two different circumstances.
+
 
