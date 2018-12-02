@@ -28,7 +28,7 @@ public interface MapCS2<Key extends Comparable<Key>, Value> {
 
 * The `toString()` method should return a string with key-value pairs, where the key is separated from the value by a space-colon-space, and the pairs are separated by a comma-space, e.g., ``dog : animal, tree : vegetable, salt : mineral``.
 
-* I expect you to use the files I have provided. Do not create new .java files, do not create new directories, and keep all your `.java` files in the `src` directory. In addition, do not change the names of the methods. I will be testing your code using these specific methods.
+* I expect you to use the files I have provided. Do not create new `.java` files, do not create new directories, and keep all your `.java` files in the `src` directory. In addition, do not change the names of the methods. I will be testing your code using these specific methods.
 
 
 ### Part 1: Hash map with separate chaining: `HashMapCS2.java`
