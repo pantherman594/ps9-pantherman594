@@ -61,7 +61,7 @@ In each of the two maps, add code to keep track of and print out the number of c
 
 Then in the `TestMyMap.java` file, write a main method that does the following.
 
-1. Create a HashMapCS2 object and a TreeMapCS2 object.
+1. Create a `HashMapCS2` object and a `TreeMapCS2` object.
 
 2. Populate each map with the following key-value pairs. You must insert them in this order!
 
