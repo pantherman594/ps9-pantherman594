@@ -4,7 +4,7 @@
 
 ---
 
-This is an individual assignment. In this problem set, you will be implementing two different maps and running experiments to compare their efficiency under different circumstance. For both maps, you will be implementing the following map ADT interface:
+This is an individual assignment. In this problem set, you will be implementing two different maps and running experiments to compare their efficiency under different circumstance. For both maps, you will be implementing the following map ADT interface, which you will find in the `src` directory:
 
 ``` java
 
@@ -28,20 +28,20 @@ public interface MapCS2<Key extends Comparable<Key>, Value> {
 
 * The toString() method should return a string with key-value pairs, where the key is separated from the value by a space-colon-space, and the pairs are separated by a comma-space, e.g., ``dog : animal, tree : vegetable, salt : mineral``.
 
-* I expect you to use the files I have provided. Do not create new .java files, and do not change the names of the methods. I will be testing your code using these specific methods.
+* I expect you to use the files I have provided. Do not create new .java files, do not create new directories, and keep all your `.java` files in the `src` directory. In addition, do not change the names of the methods. I will be testing your code using these specific methods.
 
 
-### Part 1: Hash map with separate chaining: HashMapCS2.java
-I have provided skeleton code for a hash-based implementation of the `MapCS2` interface in the `HashMapCS2.java` file. Your hash map implementation will include all of the above interface methods, plus the following components:
+### Part 1: Hash map with separate chaining: `HashMapCS2.java`
+I have provided skeleton code for a hash-based implementation of the `MapCS2` interface in the `HashMapCS2.java` file. Your hash map implementation will include all of the above interface methods, as well as the following components:
 
-* You will be storing your values in an array of size 31 of `ArrayList` objects, in which each `ArrayList` contains elements of the `KeyValuePair` type, which you will define as outlined in the `HashMapCS2.java` file. That is, you will have an array, and every element in the array will be an `ArrayList` of `KeyValuePair` objects. This will allow you to easily and efficiently implement separate chaining for collision resolution. For more information on how separate chaining works, see the textbook and the lecture notes on maps (or "symbol tables" as they are often called in the textbook).
+* You will be storing your values in an array **of size 31** of `ArrayList` objects, in which each `ArrayList` contains elements of the `KeyValuePair` type, which you will define as outlined in the `HashMapCS2.java` file. That is, you will have an array, and every element in the array will be an `ArrayList` of `KeyValuePair` objects. This will allow you to easily and efficiently implement separate chaining for collision resolution. For more information on how separate chaining works, see the textbook and the lecture notes on maps (or "symbol tables" as they are often called in the textbook).
 
-* You must also write the hash function. To keep things manageable, you will implement a hash function for **only three data types: `String`, `Integer`, and `Double`**. Your hash function will take any Integer, Double, or String, and convert it to an integer between 0 and 30. Details are provided in the `HashMapCS2.java` file. Your code needs to handle Keys of these three types only.
+* You must also write the hash function. To keep things manageable, you will implement a hash function for **only three data types:** `String`, `Integer`, and `Double`. Your hash function will take any Integer, Double, or String, and convert it to an integer between 0 and 30. Details are provided in the `HashMapCS2.java` file. Your code needs to handle keys of these three types only.
 
-*There are many implementations of the hash map data structure on the web, including one provided by the textbook. You must implement your hash map as I have described above. If you copy and paste existing code, you will not be meeting the specifications described here.*
+*There are many implementations of the hash map data structure on the web, including one provided by the textbook. You must implement your hash map as I have described above using the skeleton code I have provided.*
 
 
-### Part 2: Tree map with a binary search tree: TreeMapCS2.java
+### Part 2: Tree map with a binary search tree: `TreeMapCS2.java`
 I have provided skeleton code for a tree-based implementation of the `MapCS2` interface in the `TreeMapCS2.java` file. Your tree map implementation will include all of the interface methods, plus the following components:
 
 * You will create your trees using an inner `Node` class, whose instance variables will include `Key k, Value v, Node rightchild`, and `Node leftchild`.
@@ -52,7 +52,7 @@ I have provided skeleton code for a tree-based implementation of the `MapCS2` in
 
 * When you are writing the code for `getKeys()` to return an ArrayList of ordered keys, consult the class notes on tree traversal to remember how to traverse the tree in the correct order to return an ordered list. 
 
-*There are many implementations of the tree map data structure on the web. You must implement your tree map as I have described above. If you copy and paste existing code, you will not be meeting the specifications decsribed here.*
+*There are many implementations of the tree map data structure on the web, including one provided by the textbook. You must implement your tree map as I have described above using the skeleton code I have provided.*
 
 
 ### Part 3: Testing your data structures
