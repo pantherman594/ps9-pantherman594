@@ -11,7 +11,7 @@ This is an individual assignment. In this problem set, you will be implementing 
 public interface MapCS2<Key extends Comparable<Key>, Value> { 
   Value get(Key key);           // returns a Value for the specified key
   void put(Key key, Value val); // puts a Key-Value pair in the map
-  ArrayList<Keys> getKeys();          // returns the keys of the map as a set
+  ArrayList<Keys> getKeys();    // returns the keys of the map as a set
   Key min();                    // returns the minimum key in the map
   Key max();                    // returns the maximum key in the map
   boolean contains(Key key);    // returns true if the map contains the key
