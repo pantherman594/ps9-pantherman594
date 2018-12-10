@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class HashMapCS2<Key extends Comparable<Key>, Value> {
+public class HashMapCS2<Key extends Comparable<Key>, Value> implements MapCS2<Key, Value> {
 
   // _________________________________________
   // Note: Once you have implemented all the
@@ -19,6 +19,10 @@ public class HashMapCS2<Key extends Comparable<Key>, Value> {
     public KeyValuePair(Key k, Value v) {
       this.k = k;
       this.v = v;
+    }
+
+    public String toString() {
+      return this.k + " : " + this.v;
     }
   }
 
@@ -65,11 +69,14 @@ public class HashMapCS2<Key extends Comparable<Key>, Value> {
       String s = (String) k;
       // implement this String hash function:
       /* for each char in the String s:
-          multiply the int value of the char by its position in the String
+          multiply the int value of the char by (position in the String + 1)
           add that to the current total
          hashcode is the remainder of the final divided by 31
       */
 
+      for (int i = 0, len = s.length(); i < len; i++) {
+        hashcode += (int) s.charAt(i) * (i + 1);
+      }
     } else if (k instanceof Double) {
       Double d = (Double) k;
       // implement this Double hash function:
@@ -77,7 +84,7 @@ public class HashMapCS2<Key extends Comparable<Key>, Value> {
          as an integer when divided by 31
       */
 
-
+      hashcode = Math.abs((int) (double) d);
     } else if (k instanceof Integer) {
       Integer q = (Integer) k;
       // implement this Integer hash function:
@@ -85,12 +92,12 @@ public class HashMapCS2<Key extends Comparable<Key>, Value> {
          when divided by 31
       */
 
-
+      hashcode = Math.abs((int) q);
     } else {
       // If hashcode returns -1, you have a problem! Throw an exception
       throw new IllegalArgumentException("Invalid key type.");
     }
-    return hashcode;
+    return hashcode % 31;
   }
 
 
@@ -109,7 +116,114 @@ public class HashMapCS2<Key extends Comparable<Key>, Value> {
   String toString();            // returns a string with each key : value pair
   */
 
+  private LinkedList<KeyValuePair> getEntries(Key key) {
+    int hashcode = this.hashFunction(key); // Compute the hash code for the key
+    return this.storage.get(hashcode); // Get all the key value pairs with that hash code
+  }
 
+  private KeyValuePair getKeyValuePair(Key key) {
+    // Find the key in the key value pairs
+    for (KeyValuePair entry : this.getEntries(key)) {
+      if (entry.k.equals(key)) {
+        return entry;
+      }
+    }
+    return null; // Key isn't in the map: return null
+  }
+
+  public Value get(Key key) {
+    if (this.size == 0) return null;
+    KeyValuePair entry = this.getKeyValuePair(key);
+
+    return entry == null ? null : entry.v;
+  }
+
+  public void put(Key key, Value val) {
+    LinkedList<KeyValuePair> entries = this.getEntries(key);
+
+    // Find the key in the key value pairs
+    for (KeyValuePair entry : entries) {
+      if (entry.k.equals(key)) {
+        entry.v = val;
+        return; // Matching key was found. Don't create a new one, just change the value
+      }
+    }
+
+    entries.add(new KeyValuePair(key, val));
+    this.size++;
+  }
+
+  public ArrayList<Key> getKeys() {
+    ArrayList<Key> keys = new ArrayList<>();
+    for (KeyValuePair entry : this.getKeyValuePairs()) {
+      keys.add(entry.k);
+    }
+    return keys;
+  }
+
+  public Key min() {
+    int comparisons = 0;
+    Key min = null;
+    for (KeyValuePair entry : this.getKeyValuePairs()) {
+      comparisons++;
+      if (min == null || min.compareTo(entry.k) > 0) {
+        min = entry.k;
+      }
+    }
+    System.out.println(comparisons + " comparisons");
+    return min;
+  }
+
+  public Key max() {
+    int comparisons = 0;
+    Key max = null;
+    for (KeyValuePair entry : this.getKeyValuePairs()) {
+      comparisons++;
+      if (max == null || max.compareTo(entry.k) < 0) {
+        max = entry.k;
+      }
+    }
+    System.out.println(comparisons + " comparisons");
+    return max;
+  }
+
+  public boolean contains(Key key) {
+    for (KeyValuePair entry : this.getEntries(key)) {
+      if (entry.k.equals(key)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean isEmpty() {
+    return this.size == 0;
+  }
+
+  public int size() {
+    return this.size;
+  }
+
+  private String toString(String delim) {
+    StringBuilder out = new StringBuilder();
+    for (KeyValuePair entry : this.getKeyValuePairs()) {
+      out.append(delim).append(entry.toString());
+    }
+    return out.toString().substring(delim.length()); // Remove the first delimeter
+  }
+
+  public String toString() {
+    return this.toString(", ");
+  }
+
+  private ArrayList<KeyValuePair> getKeyValuePairs() {
+    ArrayList<KeyValuePair> keyValuePairs = new ArrayList<>();
+    for (LinkedList<KeyValuePair> row : this.storage) {
+      keyValuePairs.addAll(row);
+    }
+
+    return keyValuePairs;
+  }
 
   // -----------------------------------------------
   // Main method to test out your code
