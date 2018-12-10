@@ -84,7 +84,7 @@ public class TreeMapCS2<Key extends Comparable<Key>, Value> implements MapCS2<Ke
     // Loop through all the children until you reach a null child or a matching key
     int diff;
     while (current != null && (diff = current.entry.k.compareTo(key)) != 0) {
-      if (diff > 0) {
+      if (diff < 0) {
         current = current.rightchild;
       } else {
         current = current.leftchild;
